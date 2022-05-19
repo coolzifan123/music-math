@@ -47,7 +47,6 @@ def playSequence(track,sequence):
    for i in range(length):
       play_note(sequence[i], sample_time(), track)
 
-# verse(track)
 #OdeToJoy(track)'
 playSequence(track,OdeToJoy_res)
 mid.save('stochastic.mid')
