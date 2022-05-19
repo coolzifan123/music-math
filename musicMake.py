@@ -1,6 +1,7 @@
 from mido import Message, MidiFile, MidiTrack
-from puzi import note_dist
+from map import mapindex
 import numpy as np
+from puzi import OdeToJoy_res
 bpm = 60   # 节拍暂时设置为60
 mid = MidiFile()
 track = MidiTrack()
@@ -24,21 +25,21 @@ def play_note(note, length, track, base_num=0, delay=0, velocity=1.0, channel=0)
 
 # 以欢乐颂的一小段作为例子
 def OdeToJoy(track):
-   play_note(note_dist['3'], 0.5, track)
-   play_note(note_dist['3'], 0.5, track)
-   play_note(note_dist['4'], 0.5, track)
-   play_note(note_dist['5'], 0.5, track)
-   play_note(note_dist['5'], 0.5, track)
-   play_note(note_dist['4'], 0.5, track)
-   play_note(note_dist['3'], 0.5, track)
-   play_note(note_dist['2'], 0.5, track)
-   play_note(note_dist['1'], 0.5, track)
-   play_note(note_dist['1'], 0.5, track)
-   play_note(note_dist['2'], 0.5, track)
-   play_note(note_dist['3'], 0.5, track)
-   play_note(note_dist['3'], 0.75, track)
-   play_note(note_dist['2'], 0.25, track)
-   play_note(note_dist['2'], 1.0, track)
+   play_note(mapindex['3'], 0.5, track)
+   play_note(mapindex['3'], 0.5, track)
+   play_note(mapindex['4'], 0.5, track)
+   play_note(mapindex['5'], 0.5, track)
+   play_note(mapindex['5'], 0.5, track)
+   play_note(mapindex['4'], 0.5, track)
+   play_note(mapindex['3'], 0.5, track)
+   play_note(mapindex['2'], 0.5, track)
+   play_note(mapindex['1'], 0.5, track)
+   play_note(mapindex['1'], 0.5, track)
+   play_note(mapindex['2'], 0.5, track)
+   play_note(mapindex['3'], 0.5, track)
+   play_note(mapindex['3'], 0.75, track)
+   play_note(mapindex['2'], 0.25, track)
+   play_note(mapindex['2'], 1.0, track)
 
 # 用于播放一个音符序列
 def playSequence(track,sequence):
@@ -47,7 +48,7 @@ def playSequence(track,sequence):
       play_note(sequence[i], sample_time(), track)
 
 # verse(track)
-#OdeToJoy(track)
-playSequence(track,[1,2,3,4,5,6,7,8,9,10])
+#OdeToJoy(track)'
+playSequence(track,OdeToJoy_res)
 mid.save('stochastic.mid')
 
