@@ -6,6 +6,7 @@ mid = MidiFile()
 track = MidiTrack()
 mid.tracks.append(track)
 
+# 基础的操作是随机音符长度
 def sample_time():
    time_sq = np.array([0.125,0.25,0.5,0.75,1,1.25,1.5,1.75,2])
    # 时长概率分布可以调整
