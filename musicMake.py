@@ -13,6 +13,8 @@ def sample_time():
    prob = np.array([0.1, 0.15, 0.3, 0.1,0.15,0.05,0.05,0.05,0.05])
    timelen = np.random.choice(a=time_sq, p=prob)
    return timelen
+
+# 第一个为音符，第二个为音符长度
 def play_note(note, length, track, base_num=0, delay=0, velocity=1.0, channel=0):
    meta_time = 60 * 60 * 10 / bpm
    base_note = 60
@@ -38,6 +40,7 @@ def OdeToJoy(track):
    play_note(note_dist['2'], 0.25, track)
    play_note(note_dist['2'], 1.0, track)
 
+# 用于播放一个音符序列
 def playSequence(track,sequence):
    length = len(sequence)
    for i in range(length):
