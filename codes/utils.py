@@ -1,5 +1,5 @@
 import numpy as np
-from map import mapindex
+from codes.map import mapindex
 import itertools
 from sklearn import preprocessing
 import pygame

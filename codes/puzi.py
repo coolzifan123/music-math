@@ -1,4 +1,4 @@
-from map import mapindex
+
 import numpy as np
 
 

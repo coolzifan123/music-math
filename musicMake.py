@@ -89,6 +89,7 @@ def playSequence(track,sequence):
       play_note(sequence[i], sample_time(), track)
 if __name__=='__main__':
    matrix = get_markov_matrix(molihua)
+   np.savetxt('sample.csv', matrix, delimiter=",")
    OdeToJoy_res = get_markov_index_list(12, matrix, 40)
    playSequence(track,OdeToJoy_res)
    # molihua1(track)
