@@ -1,8 +1,12 @@
-# 随便写
+# 音数作业
+由五人共同完成
 ## 已完成
 * 从简谱乐谱自动生成一阶马尔可夫矩阵。
 * 实现python钢琴奏乐和作曲。
 * 实现从一阶马尔可夫矩阵生成随机音乐。
+* 实现加入时值的马尔可夫链生成随机音乐
+* 实现高阶马尔可夫链生成随机音乐
+* 实现多首乐谱联合生成马尔科夫链和随机音乐
 
 ## requirements
 * python 3+
@@ -14,29 +18,15 @@ mido最重要
 
 
 ## 使用说明
-直接运行musicMake.py可以得到一个mid文件（windows播放器就可以播放）
 
-### map.py
-内含音符到对应的索引，以一个半音作为间隔，例如m1代表C3，m2b代表bD3，1代表C4，l1代表C5，使用数字便于使用简谱作为输入。
+* musicMake.py对应普通音乐生成和一阶马尔科夫链随机音乐
+* highOrderMusicMake.py对应高阶马尔科夫链随机音乐
+* intervalMusicMake.py对应含有时值的马尔可夫链随机音乐
+* mutiMusicMake.py对应多首乐谱联合生成音乐
 
-### puzi.py
-get_markov_matrix： 函数输入为乐谱，乐谱参照《欢乐颂》（huanlesong），输出为一阶马尔可夫转移矩阵.
+直接运行各个含有musicMake的文件可以得到相应的mid文件（windows播放器就可以播放），具体实现和参数修改可以查看代码。
 
-get_markov_matrix_list: 输入为乐谱的list，输出为一阶马尔可夫转移矩阵。
 
-get_markov_index_list：输入为起始音符索引转移矩阵和生成音乐的长度，输出为对应长度的生成的音乐索引序列，
-
-### musicMake.py
-sample_time: 可以随机采样时间，概率分布可以手动修改。
-
-play_note：用于演奏一个音符，输入为音符对应索引，音符时长和track，使用方法具体见《欢乐颂》。
-
-playSequence： 输入为track和音符序列，可以给track增加音符。
-
-### 其他
-PLAY.py可以用python播放指定的mid文件
-
-OdeToJoy.mid是生成的欢乐颂样本，stochastic.mid是目前对应的随机音乐。
 
 
 
