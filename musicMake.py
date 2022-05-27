@@ -1,19 +1,13 @@
 from mido import Message, MidiFile, MidiTrack
-from map import mapindex
+from codes.map import mapindex
 import numpy as np
-from puzi import OdeToJoy_res
+from codes.utils import get_markov_index_list,get_markov_matrix,get_markov_matrix_list,sample_time
+from codes.puzi import huanlesong,molihua
 bpm = 60   # 节拍暂时设置为60
 mid = MidiFile()
 track = MidiTrack()
 mid.tracks.append(track)
 
-# 基础的操作是随机音符长度
-def sample_time():
-   time_sq = np.array([0.125,0.25,0.5,0.75,1,1.25,1.5,1.75,2])
-   # 时长概率分布可以调整
-   prob = np.array([0.1, 0.15, 0.3, 0.1,0.15,0.05,0.05,0.05,0.05])
-   timelen = np.random.choice(a=time_sq, p=prob)
-   return timelen
 
 # 第一个为音符，第二个为音符长度
 def play_note(note, length, track, base_num=0, delay=0, velocity=1.0, channel=0):
@@ -41,13 +35,62 @@ def OdeToJoy(track):
    play_note(mapindex['2'], 0.25, track)
    play_note(mapindex['2'], 1.0, track)
 
+# 以茉莉花一小段为例
+def molihua1(track):
+   play_note(mapindex['3'], 0.25, track)
+   play_note(mapindex['2'], 0.25, track)
+   play_note(mapindex['3'], 0.25, track)
+   play_note(mapindex['5'], 0.25, track)
+   play_note(mapindex['6'], 0.25, track)
+   play_note(mapindex['l1'], 0.25, track)
+   play_note(mapindex['l1'], 0.25, track)
+   play_note(mapindex['6'], 0.25, track)
+   play_note(mapindex['5'], 0.5, track)
+   play_note(mapindex['5'], 0.25, track)
+   play_note(mapindex['6'], 0.25, track)
+   play_note(mapindex['5'], 1.0, track)
+   play_note(mapindex['3'], 0.25, track)
+   play_note(mapindex['2'], 0.25, track)
+   play_note(mapindex['3'], 0.25, track)
+   play_note(mapindex['5'], 0.25, track)
+   play_note(mapindex['6'], 0.25, track)
+   play_note(mapindex['l1'], 0.25, track)
+   play_note(mapindex['l1'], 0.25, track)
+   play_note(mapindex['6'], 0.25, track)
+   play_note(mapindex['5'], 0.5, track)
+   play_note(mapindex['5'], 0.25, track)
+   play_note(mapindex['6'], 0.25, track)
+   play_note(mapindex['5'], 0.5, track)
+   play_note(mapindex['5'], 0.5, track)
+   play_note(mapindex['5'], 0.5, track)
+   play_note(mapindex['5'], 1.0, track)
+   play_note(mapindex['3'], 0.25, track)
+   play_note(mapindex['5'], 0.25, track)
+   play_note(mapindex['6'], 0.5, track)
+   play_note(mapindex['6'], 0.25, track)
+   play_note(mapindex['5'], 0.25, track)
+   play_note(mapindex['5'], 1.0, track)
+   play_note(mapindex['3'], 0.5, track)
+   play_note(mapindex['2'], 0.25, track)
+   play_note(mapindex['3'], 0.25, track)
+   play_note(mapindex['5'], 0.5, track)
+   play_note(mapindex['3'], 0.25, track)
+   play_note(mapindex['2'], 0.25, track)
+   play_note(mapindex['1'], 0.5, track)
+   play_note(mapindex['1'], 0.25, track)
+   play_note(mapindex['2'], 0.25, track)
+   play_note(mapindex['1'], 1.0, track)
+
+
 # 用于播放一个音符序列
 def playSequence(track,sequence):
    length = len(sequence)
    for i in range(length):
       play_note(sequence[i], sample_time(), track)
-
-#OdeToJoy(track)'
-playSequence(track,OdeToJoy_res)
-mid.save('stochastic.mid')
+if __name__=='__main__':
+   matrix = get_markov_matrix(molihua)
+   OdeToJoy_res = get_markov_index_list(12, matrix, 40)
+   playSequence(track,OdeToJoy_res)
+   # molihua1(track)
+   mid.save('molihua.mid')
 
